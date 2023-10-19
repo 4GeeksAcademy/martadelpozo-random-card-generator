@@ -15,8 +15,19 @@
   </head>
   <body>
     <div class="container-fluid text-center">
-      <div class="card mx-auto" id="card"></div>
+      <div class="settings">
+        <label for="cardWidth">Card Width:</label>
+        <input type="text" id="cardWidth" placeholder="Enter width" />
+        <label for="cardHeight">Card Height:</label>
+        <input type="text" id="cardHeight" placeholder="Enter height" />
+      </div>
+      <div class="card mx-auto" id="card">
+        <div class="top-bottom-suit suit"></div>
+        <div class="center value"></div>
+      </div>
+      <button id="generateButton">Generate Card</button>
     </div>
+
     <script src="app.js"></script>
   </body>
 </html>

@@ -3,37 +3,65 @@
 body {
   background-color: green;
 }
+
+.settings {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+  padding: 35px;
+}
+
+.settings label {
+  padding: 10px;
+}
+
+.settings input {
+  border-radius: 5px;
+}
+
 .card {
-  width: 200px;
-  height: 300px;
+  width: 250px;
+  height: 350px;
   background-color: white;
-  border: 1px solid #000;
+  border-radius: 10px;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-size: 24px;
+  font-family: "Times New Roman", Times, serif;
   position: relative;
 }
 
 .suit {
-  font-size: 36px;
-  color: black;
+  font-size: 75px;
   position: absolute;
 }
 
 .top-suit {
-  top: 10px;
+  top: 0px;
   left: 10px;
 }
 
 .bottom-suit {
   transform: rotate(180deg);
-  bottom: 10px;
+  bottom: 0px;
   right: 10px;
-  color: black;
 }
 
 .center {
   flex-grow: 1;
+  margin-top: 60px;
+  color: #000;
+  font-size: 150px;
+}
+
+button {
+  margin-top: 25px;
+  color: white;
+  background-color: black;
+  padding: 10px 30px;
+  border-radius: 5px;
 }

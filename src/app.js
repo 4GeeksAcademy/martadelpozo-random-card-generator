@@ -4,10 +4,44 @@ import "./style.css";
 
 window.onload = function() {
   //write your code here
-  console.log("Hello Im working");
+  console.log("Hello card generator");
 };
 
-// script.js
+function updateCardDimensions(width, height) {
+  const card = document.querySelector(".card");
+  card.style.width = width + "px";
+  card.style.height = height + "px";
+}
+
+function startCardGeneratorTimer(interval) {
+  generateRandomCard();
+  setInterval(generateRandomCard, interval * 1000);
+}
+
+document
+  .getElementById("generateButton")
+  .addEventListener("click", generateRandomCard);
+
+document.getElementById("cardWidth").addEventListener("input", () => {
+  const width = parseInt(document.getElementById("cardWidth").value);
+  updateCardDimensions(
+    width,
+    parseInt(document.getElementById("cardHeight").value)
+  );
+});
+
+document.getElementById("cardHeight").addEventListener("input", () => {
+  const height = parseInt(document.getElementById("cardHeight").value);
+  updateCardDimensions(
+    parseInt(document.getElementById("cardWidth").value),
+    height
+  );
+});
+
+window.addEventListener("load", () => {
+  startCardGeneratorTimer(10);
+});
+
 function getRandomSuit() {
   const suits = ["heart", "spade", "club", "diamond"];
   const randomIndex = Math.floor(Math.random() * suits.length);
@@ -51,7 +85,6 @@ function generateRandomCard() {
   bottomSuit.classList.add("suit", "bottom-suit");
   bottomSuit.textContent = getSuitIcon(suit);
 
-  // Remove any previous content
   while (card.firstChild) {
     card.removeChild(card.firstChild);
   }
@@ -60,11 +93,9 @@ function generateRandomCard() {
   card.appendChild(centerValue);
   card.appendChild(bottomSuit);
 
-  // Add the suit class
   card.classList.remove("heart", "spade", "club", "diamond");
   card.classList.add(suit);
 
-  // Conditionally change the suit icon color to red for hearts and diamonds
   if (suit === "heart" || suit === "diamond") {
     topSuit.style.color = "red";
     bottomSuit.style.color = "red";
@@ -85,9 +116,8 @@ function getSuitIcon(suit) {
     case "club":
       return "♣";
     default:
-      return "♠"; // Default to spade icon
+      return "♥";
   }
 }
 
-// Generate a random card on page load
 window.addEventListener("load", generateRandomCard);
