@@ -7,40 +7,31 @@ window.onload = function() {
   console.log("Hello card generator");
 };
 
-function updateCardDimensions(width, height) {
-  const card = document.querySelector(".card");
+// DOM elements
+const card = document.getElementById("card");
+const cardWidthInput = document.getElementById("cardWidth");
+const cardHeightInput = document.getElementById("cardHeight");
+const generateButton = document.getElementById("generateButton");
+
+// Initial card dimensions
+const initialCardWidth = 250;
+const initialCardHeight = 350;
+
+// Event listeners
+generateButton.addEventListener("click", generateRandomCard);
+cardWidthInput.addEventListener("input", updateCardDimensions);
+cardHeightInput.addEventListener("input", updateCardDimensions);
+window.addEventListener("load", generateRandomCard);
+
+// Function to update card dimensions
+function updateCardDimensions() {
+  const width = parseInt(cardWidthInput.value) || initialCardWidth;
+  const height = parseInt(cardHeightInput.value) || initialCardHeight;
   card.style.width = width + "px";
   card.style.height = height + "px";
 }
 
-function startCardGeneratorTimer(interval) {
-  generateRandomCard();
-  setInterval(generateRandomCard, interval * 1000);
-}
-
-document
-  .getElementById("generateButton")
-  .addEventListener("click", generateRandomCard);
-
-document.getElementById("cardWidth").addEventListener("input", () => {
-  const width = parseInt(document.getElementById("cardWidth").value);
-  updateCardDimensions(
-    width,
-    parseInt(document.getElementById("cardHeight").value)
-  );
-});
-
-document.getElementById("cardHeight").addEventListener("input", () => {
-  const height = parseInt(document.getElementById("cardHeight").value);
-  updateCardDimensions(
-    parseInt(document.getElementById("cardWidth").value),
-    height
-  );
-});
-
-window.addEventListener("load", () => {
-  startCardGeneratorTimer(10);
-});
+setInterval(generateRandomCard, 10000);
 
 function getRandomSuit() {
   const suits = ["heart", "spade", "club", "diamond"];
@@ -99,6 +90,7 @@ function generateRandomCard() {
   if (suit === "heart" || suit === "diamond") {
     topSuit.style.color = "red";
     bottomSuit.style.color = "red";
+    centerValue.style.color = "red";
   } else {
     topSuit.style.color = "black";
     bottomSuit.style.color = "black";
